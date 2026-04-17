@@ -34,7 +34,6 @@ use Term::ANSIColor;
 use Getopt::Std;
 our($opt_h, $opt_l, $opt_v, $opt_L);
 getopts('l:hvL') || exit 2;
-Usage() if $opt_h;
 
 my $LANGUAGE   = get_database();
 my $languages = << 'EOF';
@@ -44,6 +43,7 @@ my $languages = << 'EOF';
 	perl pl pm p5 plain pod pov povray python py ruby rb sql patch diff
 	shellscript sh ebuild eclass ahell
 EOF
+Usage() if $opt_h;
 if ($opt_L) {
 	print "$_ " for split ' ', $languages;
 	print "\n";
@@ -123,7 +123,7 @@ Usage: $prog [options] [input_file]
 -l LANG  set language mode to LANG
 
 Supported languages and file extensions
-	$languages
+$languages
 EOF
 	exit;
 }
